@@ -55,128 +55,129 @@ INSERT INTO permissions (id, name, description, category) VALUES
 ('settings.logs', 'Visualizar Logs', 'Permite acessar logs do sistema', 'settings'),
 
 -- Analytics permissions
-('analytics.view', 'Visualizar Analytics', 'Permite visualizar relatórios e estatísticas', 'analytics'),
-('analytics.export', 'Exportar Relatórios', 'Permite exportar relatórios detalhados', 'analytics'),
+('analytics.view', 'Visualizar Analytics', 'Permite visualizar relatórios e estatísticas', 'settings'),
+('analytics.export', 'Exportar Relatórios', 'Permite exportar relatórios detalhados', 'settings'),
 
 -- Testimonials permissions
-('testimonials.view', 'Visualizar Depoimentos', 'Permite visualizar depoimentos de clientes', 'testimonials'),
-('testimonials.create', 'Criar Depoimentos', 'Permite criar novos depoimentos', 'testimonials'),
-('testimonials.edit', 'Editar Depoimentos', 'Permite editar depoimentos existentes', 'testimonials'),
-('testimonials.delete', 'Excluir Depoimentos', 'Permite excluir depoimentos', 'testimonials');
+('testimonials.view', 'Visualizar Depoimentos', 'Permite visualizar depoimentos de clientes', 'messages'),
+('testimonials.create', 'Criar Depoimentos', 'Permite criar novos depoimentos', 'messages'),
+('testimonials.edit', 'Editar Depoimentos', 'Permite editar depoimentos existentes', 'messages'),
+('testimonials.delete', 'Excluir Depoimentos', 'Permite excluir depoimentos', 'messages');
 
 -- Insert comprehensive admin users
-INSERT INTO admin_users (id, name, email, role, created_at, last_login, is_active) VALUES
+-- Note: All passwords are hashed version of 'password123' for testing purposes
+INSERT INTO admin_users (id, name, email, password_hash, role, created_at, last_login, is_active) VALUES
 -- Super Admin
-('550e8400-e29b-41d4-a716-446655440000', 'Carlos Silva', 'admin@imobtrae.com', 'super_admin', NOW(), NOW(), true),
+('550e8400-e29b-41d4-a716-446655440000', 'Carlos Silva', 'admin@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'super_admin', NOW(), NOW(), true),
 
 -- Admins
-('550e8400-e29b-41d4-a716-446655440001', 'Maria Santos', 'maria.santos@imobtrae.com', 'admin', NOW(), NOW() - INTERVAL '2 days', true),
-('550e8400-e29b-41d4-a716-446655440002', 'João Oliveira', 'joao.oliveira@imobtrae.com', 'admin', NOW(), NOW() - INTERVAL '1 day', true),
+('550e8400-e29b-41d4-a716-446655440001', 'Maria Santos', 'maria.santos@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'admin', NOW(), NOW() - INTERVAL '2 days', true),
+('550e8400-e29b-41d4-a716-446655440002', 'João Oliveira', 'joao.oliveira@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'admin', NOW(), NOW() - INTERVAL '1 day', true),
 
 -- Editors
-('550e8400-e29b-41d4-a716-446655440003', 'Ana Costa', 'ana.costa@imobtrae.com', 'editor', NOW(), NOW() - INTERVAL '3 hours', true),
-('550e8400-e29b-41d4-a716-446655440004', 'Pedro Almeida', 'pedro.almeida@imobtrae.com', 'editor', NOW(), NOW() - INTERVAL '1 hour', true),
-('550e8400-e29b-41d4-a716-446655440005', 'Lucia Ferreira', 'lucia.ferreira@imobtrae.com', 'editor', NOW(), NOW() - INTERVAL '5 hours', true),
+('550e8400-e29b-41d4-a716-446655440003', 'Ana Costa', 'ana.costa@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'editor', NOW(), NOW() - INTERVAL '3 hours', true),
+('550e8400-e29b-41d4-a716-446655440004', 'Pedro Almeida', 'pedro.almeida@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'editor', NOW(), NOW() - INTERVAL '1 hour', true),
+('550e8400-e29b-41d4-a716-446655440005', 'Lucia Ferreira', 'lucia.ferreira@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'editor', NOW(), NOW() - INTERVAL '5 hours', true),
 
 -- Viewers
-('550e8400-e29b-41d4-a716-446655440006', 'Roberto Lima', 'roberto.lima@imobtrae.com', 'viewer', NOW(), NOW() - INTERVAL '1 day', true),
-('550e8400-e29b-41d4-a716-446655440007', 'Fernanda Rocha', 'fernanda.rocha@imobtrae.com', 'viewer', NOW(), NOW() - INTERVAL '2 days', true),
+('550e8400-e29b-41d4-a716-446655440006', 'Roberto Lima', 'roberto.lima@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'viewer', NOW(), NOW() - INTERVAL '1 day', true),
+('550e8400-e29b-41d4-a716-446655440007', 'Fernanda Rocha', 'fernanda.rocha@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'viewer', NOW(), NOW() - INTERVAL '2 days', true),
 
 -- Inactive user for testing
-('550e8400-e29b-41d4-a716-446655440008', 'Usuario Inativo', 'inativo@imobtrae.com', 'viewer', NOW(), NOW() - INTERVAL '30 days', false);
+('550e8400-e29b-41d4-a716-446655440008', 'Usuario Inativo', 'inativo@imobtrae.com', '$2b$10$rOvHPH8.OKRVwfVpDdt2/.k2T3Td.jBjZklNpIdU6qAqT0jVyOzIm', 'viewer', NOW(), NOW() - INTERVAL '30 days', false);
 
 -- Insert comprehensive agents
 INSERT INTO agents (id, name, position, photo, contact, email, bio, created_at, updated_at) VALUES
-('agent-001', 'Carlos Eduardo Silva', 'Corretor Sênior', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face', '(11) 99999-0001', 'carlos.silva@imobtrae.com', 'Especialista em imóveis de alto padrão com mais de 15 anos de experiência no mercado imobiliário de São Paulo. Formado em Administração e pós-graduado em Gestão Imobiliária.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441001', 'Carlos Eduardo Silva', 'Corretor Sênior', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face', '(11) 99999-0001', 'carlos.silva@imobtrae.com', 'Especialista em imóveis de alto padrão com mais de 15 anos de experiência no mercado imobiliário de São Paulo. Formado em Administração e pós-graduado em Gestão Imobiliária.', NOW(), NOW()),
 
-('agent-002', 'Marina Santos Oliveira', 'Corretora Especialista', 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face', '(11) 99999-0002', 'marina.santos@imobtrae.com', 'Focada em apartamentos e casas para famílias, com expertise em financiamento imobiliário. Mais de 10 anos ajudando clientes a realizar o sonho da casa própria.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441002', 'Marina Santos Oliveira', 'Corretora Especialista', 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face', '(11) 99999-0002', 'marina.santos@imobtrae.com', 'Focada em apartamentos e casas para famílias, com expertise em financiamento imobiliário. Mais de 10 anos ajudando clientes a realizar o sonho da casa própria.', NOW(), NOW()),
 
-('agent-003', 'Roberto Almeida Costa', 'Corretor Comercial', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face', '(11) 99999-0003', 'roberto.almeida@imobtrae.com', 'Especialista em imóveis comerciais e investimentos. Atua principalmente com salas comerciais, galpões e terrenos para desenvolvimento.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441003', 'Roberto Almeida Costa', 'Corretor Comercial', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face', '(11) 99999-0003', 'roberto.almeida@imobtrae.com', 'Especialista em imóveis comerciais e investimentos. Atua principalmente com salas comerciais, galpões e terrenos para desenvolvimento.', NOW(), NOW()),
 
-('agent-004', 'Ana Paula Ferreira', 'Corretora Residencial', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face', '(11) 99999-0004', 'ana.ferreira@imobtrae.com', 'Especializada em imóveis residenciais na zona sul de São Paulo. Conhecimento profundo do mercado local e excelente relacionamento com clientes.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441004', 'Ana Paula Ferreira', 'Corretora Residencial', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face', '(11) 99999-0004', 'ana.ferreira@imobtrae.com', 'Especializada em imóveis residenciais na zona sul de São Paulo. Conhecimento profundo do mercado local e excelente relacionamento com clientes.', NOW(), NOW()),
 
-('agent-005', 'Fernando Rodrigues', 'Corretor de Luxo', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face', '(11) 99999-0005', 'fernando.rodrigues@imobtrae.com', 'Corretor especializado em imóveis de luxo e alto padrão. Atende clientes VIP com discrição e excelência no atendimento personalizado.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441005', 'Fernando Rodrigues', 'Corretor de Luxo', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face', '(11) 99999-0005', 'fernando.rodrigues@imobtrae.com', 'Corretor especializado em imóveis de luxo e alto padrão. Atende clientes VIP com discrição e excelência no atendimento personalizado.', NOW(), NOW()),
 
-('agent-006', 'Juliana Mendes', 'Corretora Digital', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&crop=face', '(11) 99999-0006', 'juliana.mendes@imobtrae.com', 'Especialista em vendas online e marketing digital imobiliário. Pioneira em tours virtuais e atendimento remoto de qualidade.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441006', 'Juliana Mendes', 'Corretora Digital', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&crop=face', '(11) 99999-0006', 'juliana.mendes@imobtrae.com', 'Especialista em vendas online e marketing digital imobiliário. Pioneira em tours virtuais e atendimento remoto de qualidade.', NOW(), NOW()),
 
-('agent-007', 'Marcos Vinícius', 'Corretor de Investimentos', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face', '(11) 99999-0007', 'marcos.vinicius@imobtrae.com', 'Focado em investimentos imobiliários e consultoria patrimonial. Ajuda investidores a maximizar retornos através de estratégias imobiliárias.', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655441007', 'Marcos Vinícius', 'Corretor de Investimentos', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face', '(11) 99999-0007', 'marcos.vinicius@imobtrae.com', 'Focado em investimentos imobiliários e consultoria patrimonial. Ajuda investidores a maximizar retornos através de estratégias imobiliárias.', NOW(), NOW()),
 
-('agent-008', 'Camila Souza', 'Corretora Jovem', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face', '(11) 99999-0008', 'camila.souza@imobtrae.com', 'Corretora especializada no atendimento ao público jovem. Expert em apartamentos para solteiros e casais sem filhos, com foco em localização e mobilidade urbana.', NOW(), NOW());
+('550e8400-e29b-41d4-a716-446655441008', 'Camila Souza', 'Corretora Jovem', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face', '(11) 99999-0008', 'camila.souza@imobtrae.com', 'Corretora especializada no atendimento ao público jovem. Expert em apartamentos para solteiros e casais sem filhos, com foco em localização e mobilidade urbana.', NOW(), NOW());
 
 -- Insert comprehensive properties
 INSERT INTO properties (id, title, price, address, city, bedrooms, bathrooms, area, description, features, images, type, featured, created_at, updated_at) VALUES
 -- Apartamentos de Alto Padrão
-('prop-001', 'Apartamento Luxuoso na Vila Madalena', 1250000.00, 'Rua Harmonia, 1234', 'São Paulo', 3, 2, 120.00, 'Apartamento moderno e sofisticado no coração da Vila Madalena. Totalmente reformado com acabamentos de primeira linha, cozinha gourmet integrada e varanda com vista panorâmica.', ARRAY['Varanda gourmet', 'Cozinha integrada', 'Ar condicionado', 'Piscina', 'Academia', 'Portaria 24h', 'Vaga de garagem', 'Elevador'], ARRAY['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', 'https://images.unsplash.com/photo-1560449752-b4b5c2b5c3e2?w=800', 'https://images.unsplash.com/photo-1560449752-c4b5c2b5c3e3?w=800'], 'apartment', true, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442001', 'Apartamento Luxuoso na Vila Madalena', 1250000.00, 'Rua Harmonia, 1234', 'São Paulo', 3, 2, 120.00, 'Apartamento moderno e sofisticado no coração da Vila Madalena. Totalmente reformado com acabamentos de primeira linha, cozinha gourmet integrada e varanda com vista panorâmica.', ARRAY['Varanda gourmet', 'Cozinha integrada', 'Ar condicionado', 'Piscina', 'Academia', 'Portaria 24h', 'Vaga de garagem', 'Elevador'], ARRAY['https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800', 'https://images.unsplash.com/photo-1560449752-b4b5c2b5c3e2?w=800', 'https://images.unsplash.com/photo-1560449752-c4b5c2b5c3e3?w=800'], 'sale', true, NOW(), NOW()),
 
-('prop-002', 'Cobertura Duplex Jardins', 2800000.00, 'Alameda Santos, 567', 'São Paulo', 4, 3, 250.00, 'Cobertura duplex exclusiva nos Jardins com terraço privativo, piscina e churrasqueira. Vista deslumbrante da cidade e acabamentos importados em todos os ambientes.', ARRAY['Terraço privativo', 'Piscina privativa', 'Churrasqueira', 'Vista panorâmica', 'Elevador privativo', 'Portaria 24h', '3 vagas de garagem', 'Depósito'], ARRAY['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800', 'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=800'], 'apartment', true, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442002', 'Cobertura Duplex Jardins', 2800000.00, 'Alameda Santos, 567', 'São Paulo', 4, 3, 250.00, 'Cobertura duplex exclusiva nos Jardins com terraço privativo, piscina e churrasqueira. Vista deslumbrante da cidade e acabamentos importados em todos os ambientes.', ARRAY['Terraço privativo', 'Piscina privativa', 'Churrasqueira', 'Vista panorâmica', 'Elevador privativo', 'Portaria 24h', '3 vagas de garagem', 'Depósito'], ARRAY['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800', 'https://images.unsplash.com/photo-1513584684374-8bab748fbf90?w=800'], 'sale', true, NOW(), NOW()),
 
-('prop-003', 'Apartamento Moderno Brooklin', 850000.00, 'Rua Joaquim Floriano, 890', 'São Paulo', 2, 2, 85.00, 'Apartamento contemporâneo no Brooklin, próximo ao metrô e shopping centers. Planta otimizada e varanda integrada com living.', ARRAY['Varanda integrada', 'Cozinha americana', 'Ar condicionado', 'Academia', 'Salão de festas', 'Portaria 24h', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800', 'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800'], 'apartment', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442003', 'Apartamento Moderno Brooklin', 850000.00, 'Rua Joaquim Floriano, 890', 'São Paulo', 2, 2, 85.00, 'Apartamento contemporâneo no Brooklin, próximo ao metrô e shopping centers. Planta otimizada e varanda integrada com living.', ARRAY['Varanda integrada', 'Cozinha americana', 'Ar condicionado', 'Academia', 'Salão de festas', 'Portaria 24h', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800', 'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800'], 'sale', false, NOW(), NOW()),
 
 -- Casas
-('prop-004', 'Casa Térrea Alto de Pinheiros', 1650000.00, 'Rua Cardeal Arcoverde, 456', 'São Paulo', 4, 3, 300.00, 'Casa térrea charmosa no Alto de Pinheiros com jardim amplo e piscina. Perfeita para famílias que buscam tranquilidade sem abrir mão da localização privilegiada.', ARRAY['Jardim amplo', 'Piscina', 'Churrasqueira', 'Garagem para 4 carros', 'Escritório', 'Lareira', 'Quintal', 'Portão eletrônico'], ARRAY['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800', 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800'], 'house', true, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442004', 'Casa Térrea Alto de Pinheiros', 1650000.00, 'Rua Cardeal Arcoverde, 456', 'São Paulo', 4, 3, 300.00, 'Casa térrea charmosa no Alto de Pinheiros com jardim amplo e piscina. Perfeita para famílias que buscam tranquilidade sem abrir mão da localização privilegiada.', ARRAY['Jardim amplo', 'Piscina', 'Churrasqueira', 'Garagem para 4 carros', 'Escritório', 'Lareira', 'Quintal', 'Portão eletrônico'], ARRAY['https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800', 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800'], 'sale', true, NOW(), NOW()),
 
-('prop-005', 'Sobrado Moderno Morumbi', 2200000.00, 'Rua Giovanni Gronchi, 789', 'São Paulo', 5, 4, 400.00, 'Sobrado moderno no Morumbi com arquitetura contemporânea. Amplos espaços integrados, piscina com deck e área gourmet completa.', ARRAY['Arquitetura moderna', 'Piscina com deck', 'Área gourmet', 'Home theater', 'Escritório', 'Suíte master', 'Garagem para 6 carros', 'Sistema de segurança'], ARRAY['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800', 'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=800'], 'house', true, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442005', 'Sobrado Moderno Morumbi', 2200000.00, 'Rua Giovanni Gronchi, 789', 'São Paulo', 5, 4, 400.00, 'Sobrado moderno no Morumbi com arquitetura contemporânea. Amplos espaços integrados, piscina com deck e área gourmet completa.', ARRAY['Arquitetura moderna', 'Piscina com deck', 'Área gourmet', 'Home theater', 'Escritório', 'Suíte master', 'Garagem para 6 carros', 'Sistema de segurança'], ARRAY['https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800', 'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=800'], 'sale', true, NOW(), NOW()),
 
-('prop-006', 'Casa de Condomínio Alphaville', 1450000.00, 'Alameda Araguaia, 123', 'Barueri', 3, 3, 220.00, 'Casa em condomínio fechado de alto padrão em Alphaville. Segurança 24h, área de lazer completa e localização estratégica.', ARRAY['Condomínio fechado', 'Segurança 24h', 'Piscina do condomínio', 'Quadra de tênis', 'Playground', 'Salão de festas', 'Garagem para 3 carros'], ARRAY['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800'], 'house', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442006', 'Casa de Condomínio Alphaville', 1450000.00, 'Alameda Araguaia, 123', 'Barueri', 3, 3, 220.00, 'Casa em condomínio fechado de alto padrão em Alphaville. Segurança 24h, área de lazer completa e localização estratégica.', ARRAY['Condomínio fechado', 'Segurança 24h', 'Piscina do condomínio', 'Quadra de tênis', 'Playground', 'Salão de festas', 'Garagem para 3 carros'], ARRAY['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800', 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800'], 'sale', false, NOW(), NOW()),
 
 -- Imóveis Comerciais
-('prop-007', 'Sala Comercial Faria Lima', 750000.00, 'Avenida Faria Lima, 2000', 'São Paulo', 0, 2, 60.00, 'Sala comercial moderna na Faria Lima, ideal para escritórios e consultorias. Prédio corporativo com infraestrutura completa.', ARRAY['Prédio corporativo', 'Ar condicionado central', 'Elevadores', 'Portaria 24h', 'Vaga de garagem', 'Gerador', 'Internet fibra'], ARRAY['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800'], 'commercial', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442007', 'Sala Comercial Faria Lima', 750000.00, 'Avenida Faria Lima, 2000', 'São Paulo', 0, 2, 60.00, 'Sala comercial moderna na Faria Lima, ideal para escritórios e consultorias. Prédio corporativo com infraestrutura completa.', ARRAY['Prédio corporativo', 'Ar condicionado central', 'Elevadores', 'Portaria 24h', 'Vaga de garagem', 'Gerador', 'Internet fibra'], ARRAY['https://images.unsplash.com/photo-1497366216548-37526070297c?w=800', 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800'], 'sale', false, NOW(), NOW()),
 
-('prop-008', 'Galpão Industrial Guarulhos', 1200000.00, 'Rodovia Presidente Dutra, km 15', 'Guarulhos', 0, 4, 800.00, 'Galpão industrial estrategicamente localizado próximo à Dutra. Ideal para logística e distribuição com fácil acesso a rodovias.', ARRAY['Localização estratégica', 'Pé direito alto', 'Docas para caminhões', 'Escritório administrativo', 'Estacionamento amplo', 'Energia trifásica'], ARRAY['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800', 'https://images.unsplash.com/photo-1586528116493-a029325540fa?w=800'], 'commercial', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442008', 'Galpão Industrial Guarulhos', 1200000.00, 'Rodovia Presidente Dutra, km 15', 'Guarulhos', 0, 4, 800.00, 'Galpão industrial estrategicamente localizado próximo à Dutra. Ideal para logística e distribuição com fácil acesso a rodovias.', ARRAY['Localização estratégica', 'Pé direito alto', 'Docas para caminhões', 'Escritório administrativo', 'Estacionamento amplo', 'Energia trifásica'], ARRAY['https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800', 'https://images.unsplash.com/photo-1586528116493-a029325540fa?w=800'], 'sale', false, NOW(), NOW()),
 
 -- Apartamentos Econômicos
-('prop-009', 'Apartamento Compacto Vila Prudente', 320000.00, 'Rua do Oratório, 567', 'São Paulo', 2, 1, 45.00, 'Apartamento compacto e funcional na Vila Prudente. Ótima opção para primeiro imóvel ou investimento. Próximo ao metrô.', ARRAY['Próximo ao metrô', 'Portaria', 'Playground', 'Salão de festas', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800', 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800'], 'apartment', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442009', 'Apartamento Compacto Vila Prudente', 320000.00, 'Rua do Oratório, 567', 'São Paulo', 2, 1, 45.00, 'Apartamento compacto e funcional na Vila Prudente. Ótima opção para primeiro imóvel ou investimento. Próximo ao metrô.', ARRAY['Próximo ao metrô', 'Portaria', 'Playground', 'Salão de festas', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800', 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800'], 'sale', false, NOW(), NOW()),
 
-('prop-010', 'Apartamento Familiar Tatuapé', 480000.00, 'Rua Tuiuti, 890', 'São Paulo', 3, 2, 70.00, 'Apartamento familiar no Tatuapé com boa metragem e localização. Próximo a escolas, comércio e transporte público.', ARRAY['Localização central', 'Próximo a escolas', 'Transporte público', 'Portaria', 'Playground', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800', 'https://images.unsplash.com/photo-1484154218968-a197022b5858?w=800'], 'apartment', false, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442010', 'Apartamento Familiar Tatuapé', 480000.00, 'Rua Tuiuti, 890', 'São Paulo', 3, 2, 70.00, 'Apartamento familiar no Tatuapé com boa metragem e localização. Próximo a escolas, comércio e transporte público.', ARRAY['Localização central', 'Próximo a escolas', 'Transporte público', 'Portaria', 'Playground', 'Vaga de garagem'], ARRAY['https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800', 'https://images.unsplash.com/photo-1484154218968-a197022b5858?w=800'], 'sale', false, NOW(), NOW()),
 
 -- Casas de Alto Padrão
-('prop-011', 'Mansão Cidade Jardim', 8500000.00, 'Avenida Cidade Jardim, 100', 'São Paulo', 6, 5, 800.00, 'Mansão exclusiva na Cidade Jardim com projeto arquitetônico assinado. Terreno de 1200m² com jardim paisagístico e área de lazer completa.', ARRAY['Projeto arquitetônico', 'Jardim paisagístico', 'Piscina olímpica', 'Quadra de tênis', 'Adega climatizada', 'Home theater', 'Elevador', 'Garagem para 8 carros'], ARRAY['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800', 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800'], 'house', true, NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655442011', 'Mansão Cidade Jardim', 8500000.00, 'Avenida Cidade Jardim, 100', 'São Paulo', 6, 5, 800.00, 'Mansão exclusiva na Cidade Jardim com projeto arquitetônico assinado. Terreno de 1200m² com jardim paisagístico e área de lazer completa.', ARRAY['Projeto arquitetônico', 'Jardim paisagístico', 'Piscina olímpica', 'Quadra de tênis', 'Adega climatizada', 'Home theater', 'Elevador', 'Garagem para 8 carros'], ARRAY['https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800', 'https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800'], 'sale', true, NOW(), NOW()),
 
-('prop-012', 'Casa de Campo Cotia', 950000.00, 'Estrada da Capuava, 456', 'Cotia', 4, 3, 350.00, 'Casa de campo em Cotia com muito verde e tranquilidade. Ideal para quem busca qualidade de vida longe do centro urbano.', ARRAY['Muito verde', 'Tranquilidade', 'Piscina natural', 'Horta orgânica', 'Churrasqueira', 'Garagem para 4 carros', 'Poço artesiano'], ARRAY['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'], 'house', false, NOW(), NOW());
+('550e8400-e29b-41d4-a716-446655442012', 'Casa de Campo Cotia', 950000.00, 'Estrada da Capuava, 456', 'Cotia', 4, 3, 350.00, 'Casa de campo em Cotia com muito verde e tranquilidade. Ideal para quem busca qualidade de vida longe do centro urbano.', ARRAY['Muito verde', 'Tranquilidade', 'Piscina natural', 'Horta orgânica', 'Churrasqueira', 'Garagem para 4 carros', 'Poço artesiano'], ARRAY['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800', 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800'], 'sale', false, NOW(), NOW());
 
 -- Insert property-agent relationships
-INSERT INTO property_agents (property_id, agent_id, created_at) VALUES
-('prop-001', 'agent-001', NOW()),
-('prop-002', 'agent-005', NOW()),
-('prop-003', 'agent-002', NOW()),
-('prop-004', 'agent-004', NOW()),
-('prop-005', 'agent-005', NOW()),
-('prop-006', 'agent-002', NOW()),
-('prop-007', 'agent-003', NOW()),
-('prop-008', 'agent-003', NOW()),
-('prop-009', 'agent-002', NOW()),
-('prop-010', 'agent-004', NOW()),
-('prop-011', 'agent-005', NOW()),
-('prop-012', 'agent-001', NOW()),
+INSERT INTO property_agents (property_id, agent_id, assigned_at) VALUES
+('550e8400-e29b-41d4-a716-446655442001', '550e8400-e29b-41d4-a716-446655441001', NOW()),
+('550e8400-e29b-41d4-a716-446655442002', '550e8400-e29b-41d4-a716-446655441005', NOW()),
+('550e8400-e29b-41d4-a716-446655442003', '550e8400-e29b-41d4-a716-446655441002', NOW()),
+('550e8400-e29b-41d4-a716-446655442004', '550e8400-e29b-41d4-a716-446655441004', NOW()),
+('550e8400-e29b-41d4-a716-446655442005', '550e8400-e29b-41d4-a716-446655441005', NOW()),
+('550e8400-e29b-41d4-a716-446655442006', '550e8400-e29b-41d4-a716-446655441002', NOW()),
+('550e8400-e29b-41d4-a716-446655442007', '550e8400-e29b-41d4-a716-446655441003', NOW()),
+('550e8400-e29b-41d4-a716-446655442008', '550e8400-e29b-41d4-a716-446655441003', NOW()),
+('550e8400-e29b-41d4-a716-446655442009', '550e8400-e29b-41d4-a716-446655441002', NOW()),
+('550e8400-e29b-41d4-a716-446655442010', '550e8400-e29b-41d4-a716-446655441004', NOW()),
+('550e8400-e29b-41d4-a716-446655442011', '550e8400-e29b-41d4-a716-446655441005', NOW()),
+('550e8400-e29b-41d4-a716-446655442012', '550e8400-e29b-41d4-a716-446655441001', NOW()),
 -- Some properties with multiple agents
-('prop-001', 'agent-006', NOW()),
-('prop-002', 'agent-001', NOW()),
-('prop-005', 'agent-001', NOW()),
-('prop-011', 'agent-001', NOW());
+('550e8400-e29b-41d4-a716-446655442001', '550e8400-e29b-41d4-a716-446655441006', NOW()),
+('550e8400-e29b-41d4-a716-446655442002', '550e8400-e29b-41d4-a716-446655441001', NOW()),
+('550e8400-e29b-41d4-a716-446655442005', '550e8400-e29b-41d4-a716-446655441001', NOW()),
+('550e8400-e29b-41d4-a716-446655442011', '550e8400-e29b-41d4-a716-446655441001', NOW());
 
 -- Insert comprehensive testimonials
 INSERT INTO testimonials (id, name, role, content, avatar, created_at, updated_at) VALUES
-('test-001', 'Ricardo Mendes', 'Empresário', 'Excelente atendimento! A equipe da IMOBTRAE me ajudou a encontrar o apartamento perfeito na Vila Madalena. Processo rápido e transparente.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443001', 'Ricardo Mendes', 'Empresário', 'Excelente atendimento! A equipe da IMOBTRAE me ajudou a encontrar o apartamento perfeito na Vila Madalena. Processo rápido e transparente.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-002', 'Fernanda Costa', 'Arquiteta', 'Profissionais competentes e atenciosos. Conseguiram vender minha casa em tempo recorde pelo melhor preço do mercado. Recomendo!', 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443002', 'Fernanda Costa', 'Arquiteta', 'Profissionais competentes e atenciosos. Conseguiram vender minha casa em tempo recorde pelo melhor preço do mercado. Recomendo!', 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-003', 'Carlos Eduardo', 'Médico', 'Comprei minha primeira casa através da IMOBTRAE. Desde o primeiro contato até a entrega das chaves, tudo foi perfeito. Equipe nota 10!', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443003', 'Carlos Eduardo', 'Médico', 'Comprei minha primeira casa através da IMOBTRAE. Desde o primeiro contato até a entrega das chaves, tudo foi perfeito. Equipe nota 10!', 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-004', 'Marina Silva', 'Advogada', 'Atendimento personalizado e conhecimento profundo do mercado. Me senti segura durante todo o processo de compra do meu apartamento.', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443004', 'Marina Silva', 'Advogada', 'Atendimento personalizado e conhecimento profundo do mercado. Me senti segura durante todo o processo de compra do meu apartamento.', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-005', 'João Santos', 'Engenheiro', 'Investimento certeiro! A consultoria da IMOBTRAE me ajudou a escolher o melhor imóvel para investimento. Já estou vendo os resultados.', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443005', 'João Santos', 'Engenheiro', 'Investimento certeiro! A consultoria da IMOBTRAE me ajudou a escolher o melhor imóvel para investimento. Já estou vendo os resultados.', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-006', 'Ana Beatriz', 'Designer', 'Venderam meu apartamento em apenas 2 semanas! Marketing excelente e negociação profissional. Superou todas as expectativas.', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443006', 'Ana Beatriz', 'Designer', 'Venderam meu apartamento em apenas 2 semanas! Marketing excelente e negociação profissional. Superou todas as expectativas.', 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-007', 'Roberto Lima', 'Contador', 'Equipe muito preparada e honesta. Me orientaram sobre todos os aspectos legais e financeiros da compra. Transparência total!', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
+('550e8400-e29b-41d4-a716-446655443007', 'Roberto Lima', 'Contador', 'Equipe muito preparada e honesta. Me orientaram sobre todos os aspectos legais e financeiros da compra. Transparência total!', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face', NOW(), NOW()),
 
-('test-008', 'Juliana Rocha', 'Professora', 'Atendimento humanizado e eficiente. Entenderam exatamente o que eu procurava e encontraram a casa dos meus sonhos. Gratidão!', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face', NOW(), NOW());
+('550e8400-e29b-41d4-a716-446655443008', 'Juliana Rocha', 'Professora', 'Atendimento humanizado e eficiente. Entenderam exatamente o que eu procurava e encontraram a casa dos meus sonhos. Gratidão!', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face', NOW(), NOW());
 
 -- Insert user permissions for different roles
 -- Super Admin gets all permissions automatically (handled by policies)
 
 -- Admin permissions
-INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
+INSERT INTO user_permissions (user_id, permission_id, granted_at) VALUES
 -- Maria Santos (Admin)
 ('550e8400-e29b-41d4-a716-446655440001', 'properties.view', NOW()),
 ('550e8400-e29b-41d4-a716-446655440001', 'properties.create', NOW()),
@@ -210,7 +211,7 @@ INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
 
 -- Editor permissions
 -- Ana Costa (Editor)
-INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
+INSERT INTO user_permissions (user_id, permission_id, granted_at) VALUES
 ('550e8400-e29b-41d4-a716-446655440003', 'properties.view', NOW()),
 ('550e8400-e29b-41d4-a716-446655440003', 'properties.create', NOW()),
 ('550e8400-e29b-41d4-a716-446655440003', 'properties.edit', NOW()),
@@ -241,7 +242,7 @@ INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
 
 -- Viewer permissions
 -- Roberto Lima (Viewer)
-INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
+INSERT INTO user_permissions (user_id, permission_id, granted_at) VALUES
 ('550e8400-e29b-41d4-a716-446655440006', 'properties.view', NOW()),
 ('550e8400-e29b-41d4-a716-446655440006', 'agents.view', NOW()),
 ('550e8400-e29b-41d4-a716-446655440006', 'messages.view', NOW()),
@@ -256,21 +257,21 @@ INSERT INTO user_permissions (user_id, permission_id, created_at) VALUES
 
 -- Insert sample contact messages
 INSERT INTO contact_messages (name, email, phone, subject, message, property_id, created_at, updated_at) VALUES
-('Lucas Martins', 'lucas.martins@email.com', '(11) 98765-4321', 'Interesse no apartamento Vila Madalena', 'Olá! Tenho interesse no apartamento na Vila Madalena. Gostaria de agendar uma visita para este final de semana. Aguardo retorno.', 'prop-001', NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
+('Lucas Martins', 'lucas.martins@email.com', '(11) 98765-4321', 'Interesse no apartamento Vila Madalena', 'Olá! Tenho interesse no apartamento na Vila Madalena. Gostaria de agendar uma visita para este final de semana. Aguardo retorno.', '550e8400-e29b-41d4-a716-446655442001', NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days'),
 
-('Carla Fernandes', 'carla.fernandes@email.com', '(11) 97654-3210', 'Informações sobre financiamento', 'Bom dia! Gostaria de saber mais informações sobre as opções de financiamento para o apartamento no Brooklin. Tenho FGTS para usar como entrada.', 'prop-003', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day'),
+('Carla Fernandes', 'carla.fernandes@email.com', '(11) 97654-3210', 'Informações sobre financiamento', 'Bom dia! Gostaria de saber mais informações sobre as opções de financiamento para o apartamento no Brooklin. Tenho FGTS para usar como entrada.', '550e8400-e29b-41d4-a716-446655442003', NOW() - INTERVAL '1 day', NOW() - INTERVAL '1 day'),
 
-('Rafael Santos', 'rafael.santos@email.com', '(11) 96543-2109', 'Visita à casa no Alto de Pinheiros', 'Boa tarde! Tenho muito interesse na casa no Alto de Pinheiros. Posso visitar amanhã pela manhã? Sou pré-aprovado para financiamento.', 'prop-004', NOW() - INTERVAL '3 hours', NOW() - INTERVAL '3 hours'),
+('Rafael Santos', 'rafael.santos@email.com', '(11) 96543-2109', 'Visita à casa no Alto de Pinheiros', 'Boa tarde! Tenho muito interesse na casa no Alto de Pinheiros. Posso visitar amanhã pela manhã? Sou pré-aprovado para financiamento.', '550e8400-e29b-41d4-a716-446655442004', NOW() - INTERVAL '3 hours', NOW() - INTERVAL '3 hours'),
 
-('Patrícia Lima', 'patricia.lima@email.com', '(11) 95432-1098', 'Dúvidas sobre condomínio', 'Olá! Gostaria de saber o valor do condomínio e IPTU da cobertura nos Jardins. Também quero informações sobre a documentação.', 'prop-002', NOW() - INTERVAL '1 hour', NOW() - INTERVAL '1 hour'),
+('Patrícia Lima', 'patricia.lima@email.com', '(11) 95432-1098', 'Dúvidas sobre condomínio', 'Olá! Gostaria de saber o valor do condomínio e IPTU da cobertura nos Jardins. Também quero informações sobre a documentação.', '550e8400-e29b-41d4-a716-446655442002', NOW() - INTERVAL '1 hour', NOW() - INTERVAL '1 hour'),
 
-('Marcos Oliveira', 'marcos.oliveira@email.com', '(11) 94321-0987', 'Interesse comercial', 'Bom dia! Represento uma empresa que está procurando um galpão para logística. O galpão em Guarulhos atende nossas necessidades. Podemos conversar?', 'prop-008', NOW() - INTERVAL '5 hours', NOW() - INTERVAL '5 hours'),
+('Marcos Oliveira', 'marcos.oliveira@email.com', '(11) 94321-0987', 'Interesse comercial', 'Bom dia! Represento uma empresa que está procurando um galpão para logística. O galpão em Guarulhos atende nossas necessidades. Podemos conversar?', '550e8400-e29b-41d4-a716-446655442008', NOW() - INTERVAL '5 hours', NOW() - INTERVAL '5 hours'),
 
-('Amanda Costa', 'amanda.costa@email.com', '(11) 93210-9876', 'Primeiro imóvel', 'Olá! Estou procurando meu primeiro apartamento. O da Vila Prudente está dentro do meu orçamento. Gostaria de mais informações sobre financiamento.', 'prop-009', NOW() - INTERVAL '6 hours', NOW() - INTERVAL '6 hours'),
+('Amanda Costa', 'amanda.costa@email.com', '(11) 93210-9876', 'Primeiro imóvel', 'Olá! Estou procurando meu primeiro apartamento. O da Vila Prudente está dentro do meu orçamento. Gostaria de mais informações sobre financiamento.', '550e8400-e29b-41d4-a716-446655442009', NOW() - INTERVAL '6 hours', NOW() - INTERVAL '6 hours'),
 
-('Eduardo Rocha', 'eduardo.rocha@email.com', '(11) 92109-8765', 'Investimento imobiliário', 'Boa tarde! Sou investidor e tenho interesse no apartamento do Tatuapé para locação. Qual a rentabilidade estimada da região?', 'prop-010', NOW() - INTERVAL '4 hours', NOW() - INTERVAL '4 hours'),
+('Eduardo Rocha', 'eduardo.rocha@email.com', '(11) 92109-8765', 'Investimento imobiliário', 'Boa tarde! Sou investidor e tenho interesse no apartamento do Tatuapé para locação. Qual a rentabilidade estimada da região?', '550e8400-e29b-41d4-a716-446655442010', NOW() - INTERVAL '4 hours', NOW() - INTERVAL '4 hours'),
 
-('Beatriz Almeida', 'beatriz.almeida@email.com', '(11) 91098-7654', 'Casa dos sonhos', 'Olá! A mansão na Cidade Jardim é exatamente o que procuro. Gostaria de agendar uma visita com meu arquiteto. Quando seria possível?', 'prop-011', NOW() - INTERVAL '30 minutes', NOW() - INTERVAL '30 minutes'),
+('Beatriz Almeida', 'beatriz.almeida@email.com', '(11) 91098-7654', 'Casa dos sonhos', 'Olá! A mansão na Cidade Jardim é exatamente o que procuro. Gostaria de agendar uma visita com meu arquiteto. Quando seria possível?', '550e8400-e29b-41d4-a716-446655442011', NOW() - INTERVAL '30 minutes', NOW() - INTERVAL '30 minutes'),
 
 ('Gabriel Silva', 'gabriel.silva@email.com', '(11) 90987-6543', 'Informações gerais', 'Bom dia! Gostaria de receber informações sobre todos os imóveis disponíveis na zona sul de São Paulo na faixa de R$ 800.000 a R$ 1.200.000.', NULL, NOW() - INTERVAL '2 hours', NOW() - INTERVAL '2 hours'),
 
@@ -279,45 +280,45 @@ INSERT INTO contact_messages (name, email, phone, subject, message, property_id,
 -- Insert sample property views for analytics
 INSERT INTO property_views (property_id, user_agent, viewed_at) VALUES
 -- Popular properties with more views
-('prop-001', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
-('prop-001', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '2 hours'),
-('prop-001', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '3 hours'),
-('prop-001', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '4 hours'),
-('prop-001', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '5 hours'),
+('550e8400-e29b-41d4-a716-446655442001', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
+('550e8400-e29b-41d4-a716-446655442001', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '2 hours'),
+('550e8400-e29b-41d4-a716-446655442001', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '3 hours'),
+('550e8400-e29b-41d4-a716-446655442001', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '4 hours'),
+('550e8400-e29b-41d4-a716-446655442001', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '5 hours'),
 
-('prop-002', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
-('prop-002', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '2 hours'),
-('prop-002', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '6 hours'),
+('550e8400-e29b-41d4-a716-446655442002', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
+('550e8400-e29b-41d4-a716-446655442002', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '2 hours'),
+('550e8400-e29b-41d4-a716-446655442002', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '6 hours'),
 
-('prop-004', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '30 minutes'),
-('prop-004', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '1 hour'),
-('prop-004', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '3 hours'),
-('prop-004', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '4 hours'),
+('550e8400-e29b-41d4-a716-446655442004', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '30 minutes'),
+('550e8400-e29b-41d4-a716-446655442004', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '1 hour'),
+('550e8400-e29b-41d4-a716-446655442004', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '3 hours'),
+('550e8400-e29b-41d4-a716-446655442004', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '4 hours'),
 
-('prop-005', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '2 hours'),
-('prop-005', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '5 hours'),
-('prop-005', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '7 hours'),
+('550e8400-e29b-41d4-a716-446655442005', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '2 hours'),
+('550e8400-e29b-41d4-a716-446655442005', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '5 hours'),
+('550e8400-e29b-41d4-a716-446655442005', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '7 hours'),
 
-('prop-011', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
-('prop-011', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '3 hours'),
+('550e8400-e29b-41d4-a716-446655442011', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '1 hour'),
+('550e8400-e29b-41d4-a716-446655442011', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '3 hours'),
 
 -- Other properties with fewer views
-('prop-003', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '2 hours'),
-('prop-003', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '4 hours'),
+('550e8400-e29b-41d4-a716-446655442003', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '2 hours'),
+('550e8400-e29b-41d4-a716-446655442003', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '4 hours'),
 
-('prop-006', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '3 hours'),
-('prop-006', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '6 hours'),
+('550e8400-e29b-41d4-a716-446655442006', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '3 hours'),
+('550e8400-e29b-41d4-a716-446655442006', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '6 hours'),
 
-('prop-007', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '1 hour'),
+('550e8400-e29b-41d4-a716-446655442007', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '1 hour'),
 
-('prop-008', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '4 hours'),
+('550e8400-e29b-41d4-a716-446655442008', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '4 hours'),
 
-('prop-009', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '2 hours'),
-('prop-009', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '5 hours'),
+('550e8400-e29b-41d4-a716-446655442009', 'Mozilla/5.0 (Android 11; Mobile; rv:68.0)', NOW() - INTERVAL '2 hours'),
+('550e8400-e29b-41d4-a716-446655442009', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X)', NOW() - INTERVAL '5 hours'),
 
-('prop-010', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '3 hours'),
+('550e8400-e29b-41d4-a716-446655442010', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36', NOW() - INTERVAL '3 hours'),
 
-('prop-012', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '7 hours');
+('550e8400-e29b-41d4-a716-446655442012', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', NOW() - INTERVAL '7 hours');
 
 -- Create some additional indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_properties_price_range ON properties(price) WHERE price BETWEEN 300000 AND 3000000;
