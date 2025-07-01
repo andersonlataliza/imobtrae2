@@ -1,71 +1,97 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { AdminUser, AuthContextType } from '../types';
-import { adminUsers, userCredentials } from '../data/adminUsers';
-import { rolePermissions } from '../data/permissions';
+import { authApi, setAuthToken, getAuthToken, handleApiError } from '../services/api';
+
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: 'admin' | 'agent' | 'manager';
+  permissions: string[];
+}
+
+interface AuthContextType {
+  user: User | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+  isLoading: boolean;
+  hasPermission: (permission: string) => boolean;
+}
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
 
-interface AuthProviderProps {
-  children: React.ReactNode;
-}
-
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<AdminUser | null>(null);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored session
-    const storedUser = localStorage.getItem('adminUser');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    // Check if user is already logged in
+    const checkAuth = async () => {
+      try {
+        const token = getAuthToken();
+        if (token) {
+          const response = await authApi.verifyToken();
+          if (response.user) {
+            setUser(response.user);
+          } else {
+            // Token is invalid, remove it
+            setAuthToken(null);
+          }
+        }
+      } catch (error) {
+        console.error('Auth check error:', error);
+        // Token is invalid, remove it
+        setAuthToken(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
   }, []);
 
-  const login = async (email: string, password: string): Promise<void> => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const storedPassword = userCredentials[email];
-    if (!storedPassword || storedPassword !== password) {
-      throw new Error('Credenciais inválidas');
-    }
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      setIsLoading(true);
+      
+      const response = await authApi.login(email, password);
+      
+      if (response.user && response.token) {
+        setUser(response.user);
+        return true;
+      }
 
-    const foundUser = adminUsers.find(u => u.email === email);
-    if (!foundUser || !foundUser.isActive) {
-      throw new Error('Usuário não encontrado ou inativo');
+      return false;
+    } catch (error) {
+      console.error('Login error:', handleApiError(error));
+      return false;
+    } finally {
+      setIsLoading(false);
     }
-
-    // Update last login
-    foundUser.lastLogin = new Date().toISOString();
-    
-    setUser(foundUser);
-    localStorage.setItem('adminUser', JSON.stringify(foundUser));
   };
 
   const logout = () => {
+    authApi.logout();
     setUser(null);
-    localStorage.removeItem('adminUser');
   };
 
-  const hasPermission = (permissionId: string): boolean => {
+  const hasPermission = (permission: string): boolean => {
     if (!user) return false;
-    if (user.role === 'super_admin') return true;
-    
-    const userPermissions = rolePermissions[user.role] || [];
-    return userPermissions.includes(permissionId);
+    return user.permissions.includes(permission) || user.permissions.includes('all');
   };
 
-  const value: AuthContextType = {
+  const value = {
     user,
     login,
     logout,
+    isLoading,
     hasPermission
   };
 

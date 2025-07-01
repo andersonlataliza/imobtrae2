@@ -11,6 +11,7 @@ export interface Property {
   features: string[];
   images: string[];
   type: 'sale' | 'rent';
+  status: 'available' | 'unavailable';
   featured: boolean;
 }
 

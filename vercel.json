@@ -22,6 +22,10 @@
     }
   },
   "functions": {
+    "api/**/*.ts": {
+      "runtime": "nodejs18.x",
+      "maxDuration": 30
+    },
     "app/api/**/*.js": {
       "runtime": "nodejs18.x"
     }
