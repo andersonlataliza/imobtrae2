@@ -1,0 +1,78 @@
+{
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "framework": "vite",
+  "env": {
+    "VITE_SUPABASE_URL": "@supabase_url",
+    "VITE_SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "USE_COMPLETE_SEEDERS": "true",
+    "VITE_APP_NAME": "IMOBTRAE",
+    "VITE_APP_URL": "@app_url",
+    "VITE_APP_DESCRIPTION": "Plataforma completa para gestão imobiliária"
+  },
+  "build": {
+    "env": {
+      "VITE_SUPABASE_URL": "@supabase_url",
+      "VITE_SUPABASE_ANON_KEY": "@supabase_anon_key",
+      "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+      "USE_COMPLETE_SEEDERS": "true"
+    }
+  },
+  "functions": {
+    "app/api/**/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "regions": ["gru1"],
+  "cleanUrls": true,
+  "trailingSlash": false
+}
