@@ -5,7 +5,7 @@ import { AdminUser } from '../types';
 import { adminUsers, userCredentials } from '../data/adminUsers';
 import { permissions, rolePermissions } from '../data/permissions';
 import Button from './Button';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 
 const UserManagement: React.FC = () => {
   const { hasPermission } = useAuth();

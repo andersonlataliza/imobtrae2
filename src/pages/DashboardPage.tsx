@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Building, Users, MessageSquare, Settings, LogOut, Shield } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { useNavigate } from 'react-router-dom';
 import UserManagement from '../components/UserManagement';
 import Button from '../components/Button';
@@ -10,13 +10,18 @@ const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
 
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
+
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
   if (!user) {
-    navigate('/');
     return null;
   }
 

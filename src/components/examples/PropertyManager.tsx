@@ -9,7 +9,7 @@ import {
   useSearchFilter
 } from '../../hooks/useApi';
 import { Property } from '../../types';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContextSupabase';
 
 interface PropertyFilters {
   type?: 'sale' | 'rent';

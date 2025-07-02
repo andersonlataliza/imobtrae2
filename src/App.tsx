@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContextSupabase';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import PropertyDetailsPage from './pages/PropertyDetailsPage';
@@ -13,7 +13,12 @@ import DashboardPage from './pages/DashboardPage';
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
