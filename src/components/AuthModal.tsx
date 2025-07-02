@@ -112,7 +112,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => 
 
               <Button
                 type="submit"
-                className="w-full"
+                fullWidth={true}
                 disabled={loading}
               >
                 {loading ? 'Entrando...' : 'Entrar'}

@@ -6,7 +6,7 @@ interface User {
   id: string;
   email: string;
   name: string;
-  role: 'admin' | 'agent' | 'manager';
+  role: 'super_admin' | 'admin' | 'agent' | 'manager';
   permissions: string[];
 }
 
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     checkSession();
 
     // Escutar mudanças de autenticação
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_, session) => {
       if (session?.user) {
         await loadUserProfile(session.user);
       } else {
@@ -135,7 +135,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const hasPermission = (permission: string): boolean => {
     if (!user) return false;
-    return user.permissions.includes(permission) || user.role === 'admin';
+    return user.permissions.includes(permission) || user.role === 'admin' || user.role === 'super_admin';
   };
 
   const value = {

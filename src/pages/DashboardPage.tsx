@@ -142,7 +142,8 @@ const DashboardPage: React.FC = () => {
                 <Shield size={16} />
                 <span>{user.role === 'super_admin' ? 'Super Admin' : 
                        user.role === 'admin' ? 'Admin' : 
-                       user.role === 'editor' ? 'Editor' : 'Visualizador'}</span>
+                       user.role === 'manager' ? 'Gerente' : 
+                       user.role === 'agent' ? 'Corretor' : 'Visualizador'}</span>
               </div>
               <Button
                 variant="outline"
